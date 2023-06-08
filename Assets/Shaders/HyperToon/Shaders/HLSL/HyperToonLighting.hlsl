@@ -1,5 +1,7 @@
-#ifndef LIGHTING_CEL_SHADED_INCLUDED
-#define LIGHTING_CEL_SHADED_INCLUDED
+// Based on cel shading from Robin Seibold (https://www.youtube.com/watch?v=gw31oF9qITw)
+
+#ifndef HYPERTOON_LIGHTING_INCLUDED
+#define HYPERTOON_LIGHTING_INCLUDED
 
 #ifndef SHADERGRAPH_PREVIEW
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -29,6 +31,7 @@ struct SurfaceVariables
     float smoothness;
     float shininess;
     float rimThreshold;
+    float3 rimColor;
     float fogFactor;
     EdgeConstants edge;
 };
@@ -64,13 +67,13 @@ float3 CalculateCelShading(Light l, SurfaceVariables s, bool isMainLight)
         s.edge.rim + .5 * s.edge.rimSoftness,
         s.edge.useHalftoneHighlight ? rim * s.edge.voroniHalftone : rim); // rim highlight with halftone
 
-    // TESTING
+    // ==TESTING==
     // return smoothstep(0, 1, diffuse);
     
     // only sample light colors of additional light (temporary)
     // specular boost if is calculating main light
     float3 color = (isMainLight ? s.albedo * l.color : l.color) * (diffuse + max(specular, rim))
-        + (isMainLight ? s.edge.specularBoost : 0) * max(specular, rim);
+        + (isMainLight ? s.edge.specularBoost : 0) * max(specular, rim * s.rimColor);
 
     // mix fog
     color = MixFog(color, s.fogFactor);
@@ -79,17 +82,19 @@ float3 CalculateCelShading(Light l, SurfaceVariables s, bool isMainLight)
 }
 #endif
 
-void LightingCelShaded_float(float3 Albedo, float Smoothness, float RimThreshold,
+void HyperToonLighting_float(float3 Albedo, float Smoothness, float RimThreshold,
     float3 Position, float3 Normal, float3 View,
     float EdgeDiffuse, float EdgeSpecular, float EdgeSpecularBoost, float EdgeSpecularOffset,
     float EdgeDistanceAttenuation, float EdgeShadowAttenuation,
-    float EdgeRim, float EdgeRimSoftness,
+    float EdgeRim, float EdgeRimSoftness, float3 RimColor,
     bool UseHalftoneShadows, bool UseHalftoneHightlights, float VoroniHalftone,
     out float3 Color)
 {
-#if defined(SHADERGRAPH_PREVIEW)
+#ifdef SHADERGRAPH_PREVIEW
+    // Shader graph preview
     Color = float3(.5, .5, .5);
 #else
+    // Assigning data to structs
     // Edge constants
     EdgeConstants e;
     e.diffuse = EdgeDiffuse;
@@ -103,7 +108,6 @@ void LightingCelShaded_float(float3 Albedo, float Smoothness, float RimThreshold
     e.useHalftoneShadow = UseHalftoneShadows;
     e.useHalftoneHighlight = UseHalftoneHightlights;
     e.voroniHalftone = VoroniHalftone;
-    
     // Surface variables
     SurfaceVariables s;
     s.albedo = Albedo;
@@ -112,10 +116,10 @@ void LightingCelShaded_float(float3 Albedo, float Smoothness, float RimThreshold
     s.smoothness = Smoothness;
     s.shininess = exp2(10 * Smoothness + 1);
     s.rimThreshold = RimThreshold;
+    s.rimColor = RimColor;
     s.edge = e;
     // fog
-    float3 positionClipSpace = TransformWorldToHClip(Position);
-    s.fogFactor = ComputeFogFactor(positionClipSpace.z);
+    s.fogFactor = ComputeFogFactor(TransformWorldToHClip(Position).z);
 
     // Shadow calculations
     #ifdef SHADOWS_SCREEN
@@ -129,7 +133,7 @@ void LightingCelShaded_float(float3 Albedo, float Smoothness, float RimThreshold
     Light light = GetMainLight(shadowCoord);
     Color = CalculateCelShading(light, s, true);
 
-    // Additional lights
+    // Calculate additional lights
     int pixelLightCount = GetAdditionalLightsCount();
     for (int i = 0; i < pixelLightCount; ++i)
     {

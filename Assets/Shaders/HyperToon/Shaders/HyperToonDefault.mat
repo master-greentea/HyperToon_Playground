@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HyperToon
+  m_Name: HyperToonDefault
   m_Shader: {fileID: -6465566751694194690, guid: 3211bf05ece276b4badbd196f399c679,
     type: 3}
   m_Parent: {fileID: 0}
@@ -34,6 +34,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,32 +56,30 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ADDITIONAL_LIGHTS: 1
-    - _ADDITIONAL_LIGHT_SHADOWS: 1
-    - _Diffuse: 0.877
-    - _DistanceAtten: 0.03
+    - _Diffuse: 0.5
+    - _DistanceAtten: 0.5
     - _DotDensity: 60
     - _HalftoneHighlight: 1
     - _HalftoneShadow: 1
-    - _MAIN_LIGHT_SHADOWS: 1
-    - _MAIN_LIGHT_SHADOWS_CASCADE: 1
-    - _QueueControl: 0
+    - _NormalStrength: 0.5
+    - _QueueControl: -1
     - _QueueOffset: 0
-    - _ReflectionProbe: 0
+    - _ReceiveReflection: 0
     - _ReflectionRimThreshold: 1
-    - _Rim: 0.28
-    - _RimSoftness: 0.087
+    - _Rim: 0.3
+    - _RimSoftness: 0.05
     - _RimThreshold: 1
-    - _Rotation: 15
-    - _SHADOWS_SOFT: 1
+    - _Rotation: 45
     - _ShadowAtten: 1
-    - _Smoothness: 0.668
-    - _Specular: 0.0728
-    - _SpecularBoost: 0.826
-    - _SpecularOffset: 0
+    - _Smoothness: 0.5
+    - _Specular: 0.02
+    - _SpecularBoost: 0.5
+    - _SpecularOffset: 0.05
+    - _UseCustomNormals: 0
     - _UseScreenSpace: 1
     m_Colors:
-    - _Color: {r: 0.9150943, g: 0.5481933, b: 0.90441036, a: 0}
+    - _Color: {r: 0.18867916, g: 0.18867916, b: 0.18867916, a: 0}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8898033163929172422
 MonoBehaviour:

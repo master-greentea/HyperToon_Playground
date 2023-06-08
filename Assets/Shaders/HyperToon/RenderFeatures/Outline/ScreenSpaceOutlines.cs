@@ -11,29 +11,46 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
     public class ViewSpaceNormalsTextureSettings
     {
         public RenderTextureFormat colorFormat;
-        public int depthBufferBits;
+        public int depthBufferBits = 8;
         public Color backgroundColor;
         public FilterMode filterMode;
+    }
+    
+    [System.Serializable]
+    public class OutlineSettings
+    {
+        public float outlineScale = 1.5f;
+        public float crossMultiplier = 2.5f;
+        [Range(0f, 1f)] public float depthThreshold = 1f;
+        [Range(0f, 1f)] public float normalThreshold = .4f;
+        [Range(0f, 1f)] public float stepAngleThreshold = 1f;
+        public float stepAngleMultiplier = 20;
+        public Color outlineColor = Color.black;
     }
 
     // ScreenSpaceOutlines variables & methods
     [SerializeField] private RenderPassEvent renderPassEvent;
-    [SerializeField] private Material normalsMaterial;
-    [SerializeField] private Material outlinesMaterial;
-    [SerializeField] private ViewSpaceNormalsTextureSettings viewSpaceNormalsTextureSettings;
     [SerializeField] private LayerMask outlinesLayerMask;
-    
+    private Material normalsMaterial;
+    [SerializeField] private ViewSpaceNormalsTextureSettings viewSpaceNormalsTextureSettings;
+    private Material outlinesMaterial;
+    [SerializeField] private OutlineSettings outlineSettings;
+
     private ViewSpaceNormalsTexturePass viewSpaceNormalsTexturePass;
     private ScreenSpaceOutlinePass screenSpaceOutlinePass;
     
     public override void Create()
     {
+        normalsMaterial = CoreUtils.CreateEngineMaterial("HyperToon/Hidden/HyperToon_ViewSpaceNormalsShader");
+        outlinesMaterial = CoreUtils.CreateEngineMaterial("HyperToon/HyperToon_OutlineShader");
+        
         viewSpaceNormalsTexturePass = new ViewSpaceNormalsTexturePass(renderPassEvent, normalsMaterial, outlinesLayerMask, viewSpaceNormalsTextureSettings);
         screenSpaceOutlinePass = new ScreenSpaceOutlinePass(renderPassEvent, outlinesMaterial);
     }
     
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
+        screenSpaceOutlinePass.Setup(outlineSettings);
         renderer.EnqueuePass(viewSpaceNormalsTexturePass);
         renderer.EnqueuePass(screenSpaceOutlinePass);
     }
@@ -114,6 +131,17 @@ public class ScreenSpaceOutlinePass : ScriptableRenderPass
     {
         this.renderPassEvent = renderPassEvent;
         screenSpaceOutlineMaterial = outlineShader;
+    }
+    
+    public void Setup(ScreenSpaceOutlines.OutlineSettings settings)
+    {
+        screenSpaceOutlineMaterial.SetFloat("_OutlineScale", settings.outlineScale);
+        screenSpaceOutlineMaterial.SetFloat("_CrossMultiplier", settings.crossMultiplier);
+        screenSpaceOutlineMaterial.SetFloat("_DepthThreshold", settings.depthThreshold);
+        screenSpaceOutlineMaterial.SetFloat("_NormalThreshold", settings.normalThreshold);
+        screenSpaceOutlineMaterial.SetFloat("_StepAngleThreshold", settings.stepAngleThreshold);
+        screenSpaceOutlineMaterial.SetFloat("_StepAngleMultiplier", settings.stepAngleMultiplier);
+        screenSpaceOutlineMaterial.SetColor("_OutlineColor", settings.outlineColor);
     }
 
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)

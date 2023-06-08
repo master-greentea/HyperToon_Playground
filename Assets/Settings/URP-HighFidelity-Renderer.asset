@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6430927444728004668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fba165842ce00a48bd163258a3eadca, type: 3}
-  m_Name: ScreenSpaceOutlines
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  renderPassEvent: 400
-  normalsMaterial: {fileID: 2100000, guid: 54f3235552429da4a80e2e5aca9b338f, type: 2}
-  outlinesMaterial: {fileID: 2100000, guid: 9177f419e81ac0b46a793d796a646267, type: 2}
-  viewSpaceNormalsTextureSettings:
-    colorFormat: 0
-    depthBufferBits: 16
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    filterMode: 0
-  outlinesLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +35,36 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3302065f671a8450b82c9ddf07426f3a, type: 3}
   - {fileID: 2800000, guid: 56a77a3e8d64f47b6afe9e3c95cb57d5, type: 3}
   m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
+--- !u!114 &-1426921647621924930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fba165842ce00a48bd163258a3eadca, type: 3}
+  m_Name: ScreenSpaceOutlines
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  renderPassEvent: 400
+  outlinesLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  viewSpaceNormalsTextureSettings:
+    colorFormat: 0
+    depthBufferBits: 8
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    filterMode: 0
+  outlineSettings:
+    outlineScale: 1.5
+    crossMultiplier: 2.5
+    depthThreshold: 1
+    normalThreshold: 0.4
+    stepAngleThreshold: 1
+    stepAngleMultiplier: 20
+    outlineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &-248555672007097240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,8 +96,8 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: 866162348312775888}
-  - {fileID: -6430927444728004668}
-  m_RendererFeatureMap: d04c0011113a050cc43fadc08fc1c0a6
+  - {fileID: -1426921647621924930}
+  m_RendererFeatureMap: d04c0011113a050cbe172e57528e32ec
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -148,9 +154,9 @@ MonoBehaviour:
   settings:
     anisotropicKuwaharaFilterSettings:
       filterKernelSectors: 8
-      filterKernelSmoothness: 0.203
-      filterRadius: 8.27
-      filterSharpness: 16
+      filterKernelSmoothness: 0.08
+      filterRadius: 3.38
+      filterSharpness: 5.25
       eccentricity: 0.13
       iterations: 1
     edgeFlowSettings:
@@ -159,7 +165,7 @@ MonoBehaviour:
       streamKernelStrength: 0
     compositorSettings:
       edgeContribution: 0.26
-      flowContribution: 1.57
-      depthContribution: 2.3
-      bumpPower: 1
-      bumpIntensity: 0
+      flowContribution: 1.87
+      depthContribution: 2.19
+      bumpPower: 0.81
+      bumpIntensity: 0.464

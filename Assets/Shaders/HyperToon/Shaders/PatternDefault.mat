@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6377801526752150692
+--- !u!114 &-4598360632130748846
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RenderFeatureMat_ScreenSpaceNormals
-  m_Shader: {fileID: -6465566751694194690, guid: e245df3e9e51fde448d8e94ecaa57743,
+  m_Name: PatternDefault
+  m_Shader: {fileID: -6465566751694194690, guid: ac011c7dc75973746addf28af3f10131,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -51,7 +51,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _QueueControl: 0
+    - _AutoGradientRotation: 0
+    - _DarkNoiseScale: 0.2
+    - _DarkPercentage: 1
+    - _DotDensity: 50
+    - _DotRotation: 0
+    - _DotSize: 0.3
+    - _GradientOffset: 1
+    - _ManualGradientRotation: 0
+    - _QueueControl: -1
     - _QueueOffset: 0
-    m_Colors: []
+    - _RandomSeed: 1500
+    - _ToggleWindow: 0
+    - _WindowGutter: 0.2
+    - _WindowOffset: 0
+    - _WindowRounding: 0.03
+    m_Colors:
+    - _Color1: {r: 0.2755827, g: 1.498039, b: 1.435, a: 0}
+    - _Color2: {r: 1.498039, g: 0.190788, b: 1.149017, a: 0}
+    - _WindowDimensions: {r: 0.3, g: 0.6, b: 0, a: 0}
   m_BuildTextureStacks: []
