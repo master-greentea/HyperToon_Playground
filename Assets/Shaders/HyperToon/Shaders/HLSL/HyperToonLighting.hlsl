@@ -70,10 +70,9 @@ float3 CalculateCelShading(Light l, SurfaceVariables s, bool isMainLight)
     // ==TESTING==
     // return smoothstep(0, 1, diffuse);
     
-    // only sample light colors of additional light (temporary)
-    // specular boost if is calculating main light
-    float3 color = (isMainLight ? s.albedo * l.color : l.color) * (diffuse + max(specular, rim))
-        + (isMainLight ? s.edge.specularBoost : 0) * max(specular, rim * s.rimColor);
+    // only sample light colors of additional lights
+    float3 color = (isMainLight ? s.albedo * l.color : l.color) * diffuse + max(specular, rim * s.rimColor * 10)
+        + (isMainLight ? s.edge.specularBoost : 0) * max(specular, rim * s.rimColor * 10); // specular boost if is calculating main light
 
     // mix fog
     color = MixFog(color, s.fogFactor);
