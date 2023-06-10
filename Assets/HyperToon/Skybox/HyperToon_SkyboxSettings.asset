@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd482329fc4123459201cbca573c521, type: 3}
+  m_Name: HyperToon_SkyboxSettings
+  m_EditorClassIdentifier: 
+  nightDayGradient:
+    serializedVersion: 2
+    key0: {r: 0.050980393, g: 0.05490196, b: 0.09019608, a: 1}
+    key1: {r: 0.07058824, g: 0.09411765, b: 0.13725491, a: 1}
+    key2: {r: 0.38039216, g: 0.6901961, b: 0.84705883, a: 0}
+    key3: {r: 0.29803923, g: 0.5647059, b: 0.84705883, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 22741
+    ctime2: 47251
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  horizonZenithGradient:
+    serializedVersion: 2
+    key0: {r: 0.08235294, g: 0.08235294, b: 0.101960786, a: 1}
+    key1: {r: 0.15686275, g: 0.25490198, b: 0.40392157, a: 1}
+    key2: {r: 0.99607843, g: 0.43137255, b: 0, a: 0}
+    key3: {r: 0.33333334, g: 0.7490196, b: 0.28627452, a: 0}
+    key4: {r: 0.65882355, g: 0.8352941, b: 0.9254902, a: 0}
+    key5: {r: 0.654902, g: 0.78039217, b: 0.91764706, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 20840
+    ctime2: 31784
+    ctime3: 38141
+    ctime4: 41615
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  sunHaloGradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 1}
+    key2: {r: 0.99215686, g: 0.7921569, b: 0.07450981, a: 0}
+    key3: {r: 0.25882354, g: 0.5176471, b: 0.35686275, a: 0}
+    key4: {r: 0.39607844, g: 0.6666667, b: 0.61960787, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 11403
+    ctime2: 33161
+    ctime3: 41222
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  sunRadius: 0.277
+  sunIntensity: 3
+  moonRadius: 0.05
+  moonEdgeStrength: 0.06
+  moonExposure: -1.64
+  moonDarkside: 0.011
+  moonTexture: {fileID: 8900000, guid: a685fca233f0b4c4b839b6b7d62500ff, type: 3}
+  cloudCubeMap: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
+  cloudSpeed: 0.0007
+  cloudTurnOn: 1
+  starCubeMap: {fileID: 8900000, guid: abeadad4277001f40a1faad1fe1da581, type: 3}
+  starSpeed: 0.0077
+  starExposure: 12
+  starPower: 2.41
+  starLatitude: -39

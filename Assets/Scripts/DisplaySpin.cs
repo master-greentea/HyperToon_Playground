@@ -12,6 +12,6 @@ public class DisplaySpin : MonoBehaviour
     }
 
     void Update() {
-        t.rotation = Quaternion.Euler(t.eulerAngles + Vector3.up * speed * Time.deltaTime);
+        t.rotation = Quaternion.Euler(t.eulerAngles + Vector3.forward * speed * Time.deltaTime);
     }
 }
