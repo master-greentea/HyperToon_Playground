@@ -37,7 +37,7 @@ namespace HyperToon
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
-            cameraTarget = renderingData.cameraData.renderer.cameraColorTarget;
+            cameraTarget = renderingData.cameraData.renderer.cameraColorTargetHandle;
             CommandBuffer cmd = CommandBufferPool.Get();
             context.ExecuteCommandBuffer(cmd);
             cmd.Clear();

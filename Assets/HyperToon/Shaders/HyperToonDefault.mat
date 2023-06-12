@@ -65,9 +65,9 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _Diffuse: 0.5
-    - _DistanceAtten: 0.5
-    - _DotDensity: 60
+    - _Diffuse: 0.078
+    - _DistanceAtten: 0.252
+    - _DotDensity: 40
     - _DstBlend: 0
     - _HalftoneHighlight: 1
     - _HalftoneShadow: 1
@@ -84,11 +84,11 @@ Material:
     - _RimSoftness: 0.05
     - _RimThreshold: 1
     - _Rotation: 45
-    - _ShadowAtten: 1
+    - _ShadowAtten: 3.04
     - _Smoothness: 0.5
     - _Specular: 0.02
-    - _SpecularBoost: 0.5
-    - _SpecularOffset: 0.05
+    - _SpecularBoost: 0.325
+    - _SpecularOffset: 0.0054
     - _SrcBlend: 1
     - _Surface: 1
     - _UseCustomNormals: 0

@@ -55,13 +55,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.5
+    - _Alpha: 0.713
     - _Diffuse: 0.5
     - _DistanceAtten: 0.5
-    - _DotDensity: 60
+    - _DotDensity: 20
     - _HalftoneHighlight: 1
     - _HalftoneShadow: 1
-    - _IORMedium: 1.51
+    - _IORMedium: 1.513
     - _IORSource: 1.5
     - _IsTransparent: 1
     - _NormalStrength: 0.5
@@ -75,14 +75,14 @@ Material:
     - _RimThreshold: 1
     - _Rotation: 45
     - _ShadowAtten: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0.802
     - _Specular: 0.02
     - _SpecularBoost: 0.5
     - _SpecularOffset: 0.05
     - _UseCustomNormals: 0
     - _UseScreenSpace: 1
     m_Colors:
-    - _Color: {r: 0.18867916, g: 0.18867916, b: 0.18867916, a: 0}
+    - _Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8898033163929172422

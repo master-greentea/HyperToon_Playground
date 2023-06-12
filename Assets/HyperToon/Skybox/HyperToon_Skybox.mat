@@ -52,17 +52,17 @@ Material:
     m_Floats:
     - _CloudOn: 1
     - _CloudOpacity: 1
-    - _CloudSpeed: 0.0017
-    - _MoonDarkside: 0.034
-    - _MoonEdgeStrength: 0.06
-    - _MoonExposure: -1.64
+    - _CloudSpeed: 0.001
+    - _MoonDarkside: 0.01
+    - _MoonEdgeStrength: 0.05
+    - _MoonExposure: 0
     - _MoonOn: 1
-    - _MoonRadius: 0.331
-    - _StarExposure: 6
-    - _StarLatitude: -54
-    - _StarPower: 2.77
-    - _StarSpeed: 0.0016
+    - _MoonRadius: 0.05
+    - _StarExposure: 3
+    - _StarLatitude: -30
+    - _StarPower: 2.02
+    - _StarSpeed: 0.001
     - _SunIntensity: 3
-    - _SunRadius: 0.25
+    - _SunRadius: 0.185
     m_Colors: []
   m_BuildTextureStacks: []

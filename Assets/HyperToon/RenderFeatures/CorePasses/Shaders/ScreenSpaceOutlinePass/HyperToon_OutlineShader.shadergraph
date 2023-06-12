@@ -1442,7 +1442,7 @@
         },
         "preventRotation": false
     },
-    "m_Path": "HyperToon/Hidden",
+    "m_Path": "HyperToon/RenderFeatures/Hidden",
     "m_GraphPrecision": 1,
     "m_PreviewMode": 2,
     "m_OutputNode": {

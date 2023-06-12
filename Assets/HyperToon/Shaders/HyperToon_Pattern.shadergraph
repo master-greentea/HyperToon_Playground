@@ -3322,7 +3322,7 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "36e7b60a35584628931fad38f499cca8",
-    "m_Name": "Dithering",
+    "m_Name": "Halftone",
     "m_ChildObjectList": [
         {
             "m_Id": "47b197eb022f4aada8ee9088a8e0f5e3"
@@ -4845,7 +4845,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 12.0,
+        "x": 128.0,
         "y": 2.0,
         "z": 2.0,
         "w": 2.0
@@ -7477,7 +7477,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "_UseScreenSpace",
     "m_StageCapability": 3,
-    "m_Value": true,
+    "m_Value": false,
     "m_DefaultValue": false
 }
 

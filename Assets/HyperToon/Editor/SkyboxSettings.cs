@@ -41,7 +41,7 @@ public class SkyboxSettings : ScriptableObject
     {
         if (RenderSettings.skybox.shader.name != "HyperToon/Skybox/HyperToon_Skybox")
         {
-            Debug.Log("HyperToon Skybox: Not using correct shaders for skybox!");
+            Debug.Log("HyperToon Skybox: make sure to use correct material for skybox!");
             return;
         }
         SetSkyboxValues();

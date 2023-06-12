@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace HyperToon
 {
-    public class HyperRFEssential : ScriptableRendererFeature
+    public class HyperRFCore : ScriptableRendererFeature
     {
         // Common
         
@@ -23,6 +23,12 @@ namespace HyperToon
         private Material outlinesMaterial;
         private ViewSpaceNormalsTexturePass viewSpaceNormalsTexturePass;
         private ScreenSpaceOutlinePass screenSpaceOutlinePass;
+
+        [Header("Lightweight Blit Passes")]
+        // Lightweight Blit Passes
+        [SerializeField]
+        private BlitPassSettings[] blitPassSettingsArray = new [] {new BlitPassSettings()};
+        private BlitPass[] blitPasses;
         
         // Complete render feature
         public override void Create()
@@ -30,18 +36,33 @@ namespace HyperToon
             // transparency passes
             grabPass = new TransparencyGrabPass(transparencyPassSettings);
             renderPass = new TransparencyRenderPass(transparencyPassSettings);
+            
             // outlines passes
             // create materials
-            normalsMaterial = CoreUtils.CreateEngineMaterial("HyperToon/Hidden/HyperToon_ViewSpaceNormalsShader");
-            outlinesMaterial = CoreUtils.CreateEngineMaterial("HyperToon/Hidden/HyperToon_OutlineShader");
+            normalsMaterial = CoreUtils.CreateEngineMaterial("HyperToon/RenderFeatures/Hidden/HyperToon_ViewSpaceNormalsShader");
+            outlinesMaterial = CoreUtils.CreateEngineMaterial("HyperToon/RenderFeatures/Hidden/HyperToon_OutlineShader");
             // create passes
             viewSpaceNormalsTexturePass = new ViewSpaceNormalsTexturePass(outlinePassSettings.OutlinesRenderPassEvent, normalsMaterial, 
                 outlinePassSettings.OutlinesLayerMask, outlinePassSettings.NormalsTextureSettings);
             screenSpaceOutlinePass = new ScreenSpaceOutlinePass(outlinePassSettings.OutlinesRenderPassEvent, outlinesMaterial);
+            
+            // blit passes
+            blitPasses = new BlitPass[blitPassSettingsArray.Length];
+            for (int i = 0; i < blitPassSettingsArray.Length; i++)
+            {
+                blitPasses[i] = new BlitPass(blitPassSettingsArray[i], name);
+            }
         }
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
+            // blit passes added
+            foreach (var blitPass in blitPasses)
+            {
+                if (!blitPass.settings.Activate) continue;
+                blitPass.Setup();
+                renderer.EnqueuePass(blitPass);
+            }
             // transparency passes added
             renderer.EnqueuePass(grabPass);
             renderer.EnqueuePass(renderPass);

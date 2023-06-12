@@ -1,41 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8843644654018485074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 273c0d1da1ef63a45b0839f2c607b594, type: 3}
-  m_Name: HyperRF Essetial
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  transparencyPassSettings:
-    TextureName: _GrabPassTransparent
-    LayerMask:
-      serializedVersion: 2
-      m_Bits: 64
-  outlinePassSettings:
-    OutlinesRenderPassEvent: 450
-    OutlinesLayerMask:
-      serializedVersion: 2
-      m_Bits: 55
-    NormalsTextureSettings:
-      colorFormat: 0
-      depthBufferBits: 8
-      backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-      filterMode: 0
-    OutlineMaterialSettings:
-      outlineScale: 1.5
-      crossMultiplier: 2.5
-      depthThreshold: 1
-      normalThreshold: 0.4
-      stepAngleThreshold: 1
-      stepAngleMultiplier: 20
-      outlineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,8 +17,8 @@ MonoBehaviour:
       type: 3}
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
-  - {fileID: -8843644654018485074}
-  m_RendererFeatureMap: ae2472f50a104585
+  - {fileID: 1833486065962229458}
+  m_RendererFeatureMap: d29e4ededcd97119
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -95,3 +59,46 @@ MonoBehaviour:
   m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &1833486065962229458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273c0d1da1ef63a45b0839f2c607b594, type: 3}
+  m_Name: HyperRFEssential
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  transparencyPassSettings:
+    TextureName: _GrabPassTransparent
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 64
+  outlinePassSettings:
+    OutlinesRenderPassEvent: 450
+    OutlinesLayerMask:
+      serializedVersion: 2
+      m_Bits: 55
+    NormalsTextureSettings:
+      colorFormat: 0
+      depthBufferBits: 8
+      backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      filterMode: 0
+    OutlineMaterialSettings:
+      outlineScale: 2.59
+      crossMultiplier: 4.68
+      depthThreshold: 1
+      normalThreshold: 0.271
+      stepAngleThreshold: 1
+      stepAngleMultiplier: 20
+      outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  blitPassSettingsArray:
+  - Activate: 1
+    BlitRenderPassEvent: 550
+    BlitMaterial: {fileID: 2100000, guid: 2e906eb0cecf2cc4f86e3dbfb5f4f574, type: 2}
+  - Activate: 1
+    BlitRenderPassEvent: 550
+    BlitMaterial: {fileID: 2100000, guid: f59c1827e95f7e841bf5266b7cf85685, type: 2}
