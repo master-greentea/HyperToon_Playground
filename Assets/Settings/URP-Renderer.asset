@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4157911887377304472
+--- !u!114 &-8843644654018485074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,27 +9,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fba165842ce00a48bd163258a3eadca, type: 3}
-  m_Name: ScreenSpaceOutlines
+  m_Script: {fileID: 11500000, guid: 273c0d1da1ef63a45b0839f2c607b594, type: 3}
+  m_Name: HyperRF Essetial
   m_EditorClassIdentifier: 
   m_Active: 1
-  renderPassEvent: 400
-  outlinesLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  viewSpaceNormalsTextureSettings:
-    colorFormat: 0
-    depthBufferBits: 8
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    filterMode: 0
-  outlineSettings:
-    outlineScale: 1.5
-    crossMultiplier: 2.5
-    depthThreshold: 1
-    normalThreshold: 0.4
-    stepAngleThreshold: 1
-    stepAngleMultiplier: 20
-    outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  transparencyPassSettings:
+    TextureName: _GrabPassTransparent
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 64
+  outlinePassSettings:
+    OutlinesRenderPassEvent: 450
+    OutlinesLayerMask:
+      serializedVersion: 2
+      m_Bits: 55
+    NormalsTextureSettings:
+      colorFormat: 0
+      depthBufferBits: 8
+      backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      filterMode: 0
+    OutlineMaterialSettings:
+      outlineScale: 1.5
+      crossMultiplier: 2.5
+      depthThreshold: 1
+      normalThreshold: 0.4
+      stepAngleThreshold: 1
+      stepAngleMultiplier: 20
+      outlineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,10 +53,8 @@ MonoBehaviour:
       type: 3}
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
-  - {fileID: -4157911887377304472}
-  - {fileID: 2071655732223752119}
-  - {fileID: 8982166786783118376}
-  m_RendererFeatureMap: 687480012b214cc6b7371990e9ffbf1c2804855f1a11a77c
+  - {fileID: -8843644654018485074}
+  m_RendererFeatureMap: ae2472f50a104585
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -74,10 +78,10 @@ MonoBehaviour:
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 0
@@ -91,49 +95,3 @@ MonoBehaviour:
   m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
---- !u!114 &2071655732223752119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf02658294b43b4ab88f1ee547a1733, type: 3}
-  m_Name: LightWeightBlit
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  renderPassEvent: 600
-  blitMaterial: {fileID: 2100000, guid: 2e906eb0cecf2cc4f86e3dbfb5f4f574, type: 2}
---- !u!114 &8982166786783118376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52972966f81feb43b52481591ead784, type: 3}
-  m_Name: OilPaintingEffect
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    anisotropicKuwaharaFilterSettings:
-      filterKernelSectors: 4
-      filterKernelSmoothness: 0.638
-      filterRadius: 3.16
-      filterSharpness: 7.8
-      eccentricity: 2.94
-      iterations: 1
-    edgeFlowSettings:
-      noiseTexture: {fileID: 2800000, guid: 7e31fcd1ec11c2a4b8a64b05101de835, type: 3}
-      streamLineLength: 1
-      streamKernelStrength: 0.9
-    compositorSettings:
-      edgeContribution: 1.07
-      flowContribution: 1
-      depthContribution: 1
-      bumpPower: 0.48
-      bumpIntensity: 0.159

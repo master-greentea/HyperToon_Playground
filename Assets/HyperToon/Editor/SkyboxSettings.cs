@@ -20,27 +20,28 @@ public class SkyboxSettings : ScriptableObject
     [Range(0f, 1f)] [SerializeField] private float sunRadius = .05f;
     [Range(1f, 3f)] [SerializeField] private float sunIntensity = 1;
     [Header("Moon")]
+    [SerializeField] private bool moonTurnOn = true;
     [Range(0f, 1f)] [SerializeField] private float moonRadius = .05f;
     [Range(0.01f, 1f)] [SerializeField] private float moonEdgeStrength = .05f;
     [Range(-16, 0)] [SerializeField] private float moonExposure = 0;
     [Range(0, 1)] [SerializeField] private float moonDarkside = .01f;
     [SerializeField] private Cubemap moonTexture;
     [Header("Clouds")]
+    [SerializeField] private bool cloudTurnOn = true;
     [SerializeField] private Cubemap cloudCubeMap;
     [Range(0f, .1f)] [SerializeField] private float cloudSpeed = .001f;
-    [SerializeField] private bool cloudTurnOn = true;
     [Header("Stars")]
     [SerializeField] private Cubemap starCubeMap;
     [Range(0f, .1f)] [SerializeField] private float starSpeed = .001f;
-    [Range(-16, 16)] [SerializeField] private int starExposure = 0;
-    [Range(1f, 5f)] [SerializeField] private float starPower = 0;
-    [Range(-90, 90)] [SerializeField] private int starLatitude = 0;
+    [Range(-16, 16)] [SerializeField] private int starExposure = 3;
+    [Range(1f, 5f)] [SerializeField] private float starPower = 2;
+    [Range(-90, 90)] [SerializeField] private int starLatitude = -30;
     
     private void OnValidate()
     {
         if (RenderSettings.skybox.shader.name != "HyperToon/Skybox/HyperToon_Skybox")
         {
-            Debug.Log("Not using correct shaders!");
+            Debug.Log("HyperToon Skybox: Not using correct shaders for skybox!");
             return;
         }
         SetSkyboxValues();
@@ -50,6 +51,7 @@ public class SkyboxSettings : ScriptableObject
     {
         RenderSettings.skybox.SetFloat("_SunRadius", sunRadius);
         RenderSettings.skybox.SetFloat("_SunIntensity", sunIntensity);
+        RenderSettings.skybox.SetFloat("_MoonOn", moonTurnOn ? 1 : 0);
         RenderSettings.skybox.SetFloat("_MoonRadius", moonRadius);
         RenderSettings.skybox.SetFloat("_MoonEdgeStrength", moonEdgeStrength);
         RenderSettings.skybox.SetFloat("_MoonExposure", moonExposure);

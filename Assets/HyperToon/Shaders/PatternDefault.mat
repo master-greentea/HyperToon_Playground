@@ -67,7 +67,7 @@ Material:
     - _WindowOffset: 0
     - _WindowRounding: 0.03
     m_Colors:
-    - _Color1: {r: 5.428514, g: 29.50884, b: 28.267078, a: 0}
-    - _Color2: {r: 11.181762, g: 1.4240924, b: 8.576569, a: 0}
+    - _Color1: {r: 29.508846, g: 15.201698, b: 5.561877, a: 0}
+    - _Color2: {r: 1.4635818, g: 2.1239672, b: 11.181763, a: 0}
     - _WindowDimensions: {r: 0.3, g: 0.6, b: 0, a: 0}
   m_BuildTextureStacks: []

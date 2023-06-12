@@ -32,6 +32,8 @@ namespace HyperToon
             float currentSunAngle = Vector3.Angle(Vector3.up, sun.forward);
             float t = (currentSunAngle - sunSetThresholdAngle) / sunSetLeewayAngle;
 
+            // switch to moon as main light when sun is down
+            // incorrect (sun is still lighting the scene) main light when both are down
             directionalLight.intensity = Mathf.Lerp(.1f, 1, t);
             if (directionalLight.intensity < .2f && Vector3.Angle(Vector3.up, moon.forward) > 90)
                 directionalLight.transform.rotation = moon.rotation;

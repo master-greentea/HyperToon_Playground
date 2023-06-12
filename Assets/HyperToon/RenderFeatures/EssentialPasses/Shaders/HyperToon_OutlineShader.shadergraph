@@ -1442,7 +1442,7 @@
         },
         "preventRotation": false
     },
-    "m_Path": "HyperToon",
+    "m_Path": "HyperToon/Hidden",
     "m_GraphPrecision": 1,
     "m_PreviewMode": 2,
     "m_OutputNode": {

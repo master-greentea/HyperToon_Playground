@@ -5075,7 +5075,7 @@
     "m_Group": {
         "m_Id": "24d5e9fff6f540fc9486a37855aafc17"
     },
-    "m_Name": "VoroniHalftone",
+    "m_Name": "VoronoiHalftone",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {

@@ -51,7 +51,7 @@ namespace HyperToon
             if (SupportedRenderingFeatures.active.editableMaterialRenderQueue)
                 materialEditor.RenderQueueField();
             materialEditor.EnableInstancingField();
-            materialEditor.DoubleSidedGIField();   
+            materialEditor.DoubleSidedGIField();
         }
 
         /// <summary>
@@ -104,6 +104,7 @@ namespace HyperToon
         private readonly Vector2 halftoneScrollPos = new(17, 22);
         private bool reflectionFoldout;
         private readonly Vector2 reflectionScrollPos = new(22, 24);
+        private readonly Vector2 transparentScrollPos = new(25, 29);
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
@@ -124,10 +125,23 @@ namespace HyperToon
             MaterialProperty _UseNormals = FindProperty("_UseCustomNormals", properties);
             materialEditor.ShaderProperty(_UseNormals, "Use Custom Normals");
             e.DrawToggleContent(_UseNormals, new [] {FindProperty("_NormalMap", properties), FindProperty("_NormalStrength", properties)});
-            // Lighting
+            // Transparency
+            GUILayout.Space(10);
+            EditorGUILayout.LabelField("Transparency", EditorStyles.boldLabel);
+            GUILayout.Label("Note: Assign the correct transparent layer to object,\nand add in the correct render feature in renderer.");
+            MaterialProperty _IsTransparent = FindProperty("_IsTransparent", properties);
+            materialEditor.ShaderProperty(_IsTransparent, "Is Transparent");
+            if (_IsTransparent.floatValue == 1)
+            {
+                for (int i = (int)transparentScrollPos.x; i < transparentScrollPos.y; i++)
+                {
+                    MaterialProperty p = properties[i];
+                    materialEditor.ShaderProperty(p, p.displayName);
+                }
+            }
+            // Lighting foldouts
             GUILayout.Space(10);
             EditorGUILayout.LabelField("Lighting", EditorStyles.boldLabel);
-            // Foldouts
             // Edge Constants
             edgeConstantsFoldout = e.DrawRangeFoldout(edgeConstantsFoldout, "Edge Constants",
                 edgeConstantsScrollPos);
@@ -137,7 +151,7 @@ namespace HyperToon
             halftoneFoldout = e.DrawRangeFoldout(halftoneFoldout, "Halftone", halftoneScrollPos);
             // Reflection
             reflectionFoldout = e.DrawRangeFoldout(reflectionFoldout, "Reflection", reflectionScrollPos);
-            
+
             e.DrawAdvancedOptions();
         }
     }

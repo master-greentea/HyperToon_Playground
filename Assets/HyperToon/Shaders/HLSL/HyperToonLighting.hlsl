@@ -1,3 +1,4 @@
+// HyperToon lighting shader by Steve Huu
 // Based on cel shading from Robin Seibold (https://www.youtube.com/watch?v=gw31oF9qITw)
 
 #ifndef HYPERTOON_LIGHTING_INCLUDED
@@ -20,7 +21,7 @@ struct EdgeConstants
     float rimSoftness;
     bool useHalftoneShadow;
     bool useHalftoneHighlight;
-    float voroniHalftone;
+    float voronoiHalftone;
 };
 // general surface variables
 struct SurfaceVariables
@@ -56,16 +57,16 @@ float3 CalculateCelShading(Light l, SurfaceVariables s, bool isMainLight)
     // cel shading
     diffuse = smoothstep(
         0,
-        s.edge.useHalftoneShadow ? s.edge.diffuse * s.edge.voroniHalftone : s.edge.diffuse,
+        s.edge.useHalftoneShadow ? s.edge.diffuse * s.edge.voronoiHalftone : s.edge.diffuse,
         diffuse); // diffuse with halftone (for shadow dithering)
     specular = s.smoothness * smoothstep(
         (1 - s.smoothness) * s.edge.specular + s.edge.specularOffset,
         s.edge.specular + s.edge.specularOffset,
-        s.edge.useHalftoneHighlight ? specular * s.edge.voroniHalftone : specular); // specular with halftone
+        s.edge.useHalftoneHighlight ? specular * s.edge.voronoiHalftone : specular); // specular with halftone
     rim = s.smoothness * smoothstep(
         s.edge.rim - .5 * s.edge.rimSoftness,
         s.edge.rim + .5 * s.edge.rimSoftness,
-        s.edge.useHalftoneHighlight ? rim * s.edge.voroniHalftone : rim); // rim highlight with halftone
+        s.edge.useHalftoneHighlight ? rim * s.edge.voronoiHalftone : rim); // rim highlight with halftone
 
     // ==TESTING==
     // return smoothstep(0, 1, diffuse);
@@ -86,12 +87,12 @@ void HyperToonLighting_float(float3 Albedo, float Smoothness, float RimThreshold
     float EdgeDiffuse, float EdgeSpecular, float EdgeSpecularBoost, float EdgeSpecularOffset,
     float EdgeDistanceAttenuation, float EdgeShadowAttenuation,
     float EdgeRim, float EdgeRimSoftness, float3 RimColor,
-    bool UseHalftoneShadows, bool UseHalftoneHightlights, float VoroniHalftone,
+    bool UseHalftoneShadows, bool UseHalftoneHighlights, float VoronoiHalftone,
     out float3 Color)
 {
-#ifdef SHADERGRAPH_PREVIEW
+#if defined(SHADERGRAPH_PREVIEW)
     // Shader graph preview
-    Color = float3(.5, .5, .5);
+    Color = 1;
 #else
     // Assigning data to structs
     // Edge constants
@@ -105,8 +106,8 @@ void HyperToonLighting_float(float3 Albedo, float Smoothness, float RimThreshold
     e.rim = EdgeRim;
     e.rimSoftness = EdgeRimSoftness;
     e.useHalftoneShadow = UseHalftoneShadows;
-    e.useHalftoneHighlight = UseHalftoneHightlights;
-    e.voroniHalftone = VoroniHalftone;
+    e.useHalftoneHighlight = UseHalftoneHighlights;
+    e.voronoiHalftone = VoronoiHalftone;
     // Surface variables
     SurfaceVariables s;
     s.albedo = Albedo;

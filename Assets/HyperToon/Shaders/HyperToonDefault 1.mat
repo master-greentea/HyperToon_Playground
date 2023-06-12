@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HyperToonDefault
+  m_Name: HyperToonDefault 1
   m_Shader: {fileID: -6465566751694194690, guid: 3211bf05ece276b4badbd196f399c679,
     type: 3}
   m_Parent: {fileID: 0}
@@ -29,10 +29,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _GrabPassTransparent:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,27 +55,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Blend: 0
-    - _CastShadows: 1
-    - _Cull: 2
+    - _Alpha: 0.5
     - _Diffuse: 0.5
     - _DistanceAtten: 0.5
     - _DotDensity: 60
-    - _DstBlend: 0
     - _HalftoneHighlight: 1
     - _HalftoneShadow: 1
-    - _IORMedium: 0
-    - _IORSource: 0
-    - _IsTransparent: 0
+    - _IORMedium: 1.51
+    - _IORSource: 1.5
+    - _IsTransparent: 1
     - _NormalStrength: 0.5
     - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveReflection: 0
     - _ReflectionRimThreshold: 1
-    - _RefractionThickness: 0
+    - _RefractionThickness: 1
     - _Rim: 0.35
     - _RimSoftness: 0.05
     - _RimThreshold: 1
@@ -89,15 +79,10 @@ Material:
     - _Specular: 0.02
     - _SpecularBoost: 0.5
     - _SpecularOffset: 0.05
-    - _SrcBlend: 1
-    - _Surface: 1
     - _UseCustomNormals: 0
     - _UseScreenSpace: 1
-    - _ZTest: 4
-    - _ZWrite: 0
-    - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 0.28301874, g: 0.28301874, b: 0.28301874, a: 1}
+    - _Color: {r: 0.18867916, g: 0.18867916, b: 0.18867916, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8898033163929172422

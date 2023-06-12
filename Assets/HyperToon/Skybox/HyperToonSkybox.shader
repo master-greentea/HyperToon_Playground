@@ -10,13 +10,14 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
         _SunIntensity ("Sun intensity", Range(1, 3)) = 1
         // Moon
         [NoScaleOffset] _MoonCubeMap ("Moon cube map", Cube) = "black" {}
+        [MaterialToggle] _MoonOn("Moon On", Float) = 1
         _MoonRadius ("Moon radius", Range(0, 1)) = 0.05
         _MoonEdgeStrength ("Moon edge strength", Range(0.01, 1)) = 0.5
         _MoonExposure ("Moon exposure", Range(-16, 0)) = 0
         _MoonDarkside ("Moon darkside", Range(0, 1)) = 0.5
         // Day
         [NoScaleOffset] _CloudCubeMap ("Cloud cube map", Cube) = "black" {}
-        [MaterialToggle] _CloudOn("CloudOn", Float) = 0
+        [MaterialToggle] _CloudOn("Cloud On", Float) = 1
         _CloudSpeed ("Cloud speed", Float) = 0.001
         // Night
         [NoScaleOffset] _StarCubeMap ("Star cube map", Cube) = "black" {}
@@ -82,6 +83,8 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
             float _SunIntensity;
             
             float3 _MoonDir;
+            float _MoonOn;
+            
             float _SunRadius;
             float _MoonRadius;
             float _MoonEdgeStrength;
@@ -192,6 +195,7 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 float3 moonColor = moonMask * moonNdotL * exp2(_MoonExposure);
                 moonColor = smoothstep(0, _MoonEdgeStrength, moonColor) * moonTexture;
                 moonColor += moonMask * saturate(_MoonDarkside * moonTexture);
+                moonColor *= _MoonOn;
 
                 // clouds
                 float3 cloudUVW = GetStarUVW(viewDir, 90, _Time.y * _CloudSpeed % 1);

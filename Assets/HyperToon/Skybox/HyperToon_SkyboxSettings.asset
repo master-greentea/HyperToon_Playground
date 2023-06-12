@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nightDayGradient:
     serializedVersion: 2
-    key0: {r: 0.050980393, g: 0.05490196, b: 0.09019608, a: 1}
+    key0: {r: 0.12380434, g: 0.06634924, b: 0.1981132, a: 1}
     key1: {r: 0.07058824, g: 0.09411765, b: 0.13725491, a: 1}
     key2: {r: 0.38039216, g: 0.6901961, b: 0.84705883, a: 0}
     key3: {r: 0.29803923, g: 0.5647059, b: 0.84705883, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0.2840971, b: 0.5849056, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
     ctime1: 22741
     ctime2: 47251
     ctime3: 65535
-    ctime4: 0
+    ctime4: 65535
     ctime5: 0
     ctime6: 0
     ctime7: 0
@@ -102,18 +102,19 @@ MonoBehaviour:
     m_ColorSpace: 0
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  sunRadius: 0.277
+  sunRadius: 0.25
   sunIntensity: 3
-  moonRadius: 0.05
+  moonTurnOn: 1
+  moonRadius: 0.331
   moonEdgeStrength: 0.06
   moonExposure: -1.64
-  moonDarkside: 0.011
+  moonDarkside: 0.034
   moonTexture: {fileID: 8900000, guid: a685fca233f0b4c4b839b6b7d62500ff, type: 3}
-  cloudCubeMap: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
-  cloudSpeed: 0.0007
   cloudTurnOn: 1
+  cloudCubeMap: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
+  cloudSpeed: 0.0017
   starCubeMap: {fileID: 8900000, guid: abeadad4277001f40a1faad1fe1da581, type: 3}
-  starSpeed: 0.0077
-  starExposure: 12
-  starPower: 2.41
-  starLatitude: -39
+  starSpeed: 0.0016
+  starExposure: 6
+  starPower: 2.77
+  starLatitude: -54
