@@ -88,10 +88,10 @@ MonoBehaviour:
       backgroundColor: {r: 0, g: 0, b: 0, a: 0}
       filterMode: 0
     OutlineMaterialSettings:
-      outlineScale: 2.59
-      crossMultiplier: 4.68
+      outlineScale: 1.62
+      crossMultiplier: 3.86
       depthThreshold: 1
-      normalThreshold: 0.271
+      normalThreshold: 0.439
       stepAngleThreshold: 1
       stepAngleMultiplier: 20
       outlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -102,3 +102,6 @@ MonoBehaviour:
   - Activate: 1
     BlitRenderPassEvent: 550
     BlitMaterial: {fileID: 2100000, guid: f59c1827e95f7e841bf5266b7cf85685, type: 2}
+  - Activate: 0
+    BlitRenderPassEvent: 500
+    BlitMaterial: {fileID: 2100000, guid: a18bb1ca2e0762f48b9bf47668ceb16c, type: 2}

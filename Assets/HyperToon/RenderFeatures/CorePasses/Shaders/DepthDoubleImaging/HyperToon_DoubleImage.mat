@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1225994703543860939
+--- !u!114 &-5166427722063596464
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HyperToon_ChromaticAbberation
-  m_Shader: {fileID: -6465566751694194690, guid: 15d555c30c90f1b49b07ef15caba1494,
+  m_Name: HyperToon_DoubleImage
+  m_Shader: {fileID: -6465566751694194690, guid: 364af39506ca0fd44b156dca6c07e035,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -55,16 +55,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brightness: 3
-    - _DotDensity: 40
-    - _DotRotation: 15
-    - _EdgeSize: 5
-    - _EdgeSoftness: 3.36
-    - _Intensity: 0.00367
+    - _FocusDistance: 17.8
+    - _FocusRange: 0.63
+    - _Offset: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _UseHalftone: 1
-    m_Colors:
-    - _ColorB: {r: 1, g: 0, b: 0.43551683, a: 0}
-    - _ColorR: {r: 0, g: 0.7883401, b: 1, a: 0}
+    m_Colors: []
   m_BuildTextureStacks: []
