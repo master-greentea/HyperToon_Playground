@@ -96,12 +96,9 @@ MonoBehaviour:
       stepAngleMultiplier: 20
       outlineColor: {r: 0, g: 0, b: 0, a: 1}
   blitPassSettingsArray:
-  - Activate: 1
+  - Activate: 0
     BlitRenderPassEvent: 550
     BlitMaterial: {fileID: 2100000, guid: 2e906eb0cecf2cc4f86e3dbfb5f4f574, type: 2}
   - Activate: 1
     BlitRenderPassEvent: 550
     BlitMaterial: {fileID: 2100000, guid: f59c1827e95f7e841bf5266b7cf85685, type: 2}
-  - Activate: 0
-    BlitRenderPassEvent: 500
-    BlitMaterial: {fileID: 2100000, guid: a18bb1ca2e0762f48b9bf47668ceb16c, type: 2}

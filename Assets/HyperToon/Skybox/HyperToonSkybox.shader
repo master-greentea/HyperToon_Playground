@@ -19,6 +19,8 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
         [NoScaleOffset] _CloudCubeMap ("Cloud cube map", Cube) = "black" {}
         [MaterialToggle] _CloudOn("Cloud On", Float) = 1
         _CloudSpeed ("Cloud speed", Float) = 0.001
+        [NoScaleOffset] _CloudBackCubeMap ("Cloud cube map", Cube) = "black" {}
+        _Cloudiness ("Cloudiness", Range(0, 1)) = 0.5
         // Night
         [NoScaleOffset] _StarCubeMap ("Star cube map", Cube) = "black" {}
         _StarExposure ("Star exposure", Range(-16, 16)) = 0
@@ -55,6 +57,8 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
             SAMPLER(sampler_StarCubeMap);
             TEXTURECUBE(_CloudCubeMap);
             SAMPLER(sampler_CloudCubeMap);
+            TEXTURECUBE(_CloudBackCubeMap);
+            SAMPLER(sampler_CloudBackCubeMap);
 
             struct Attributes
             {
@@ -98,6 +102,7 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
 
             float _CloudSpeed;
             float _CloudOn;
+            float _Cloudiness;
 
             float GetSunMask(float sunViewDot, float sunRadius)
             {
@@ -200,9 +205,13 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 // clouds
                 float3 cloudUVW = GetStarUVW(viewDir, 90, _Time.y * _CloudSpeed % 1);
                 float3 cloudColor = SAMPLE_TEXTURECUBE_BIAS(_CloudCubeMap, sampler_CloudCubeMap, cloudUVW, -1).rgb;
-                cloudColor *= _CloudOn;
+                cloudColor *= _CloudOn * lerp(1, 2, _Cloudiness);
+                // clouds back
+                float3 cloudBackUVW = GetStarUVW(viewDir, 90, _Time.y * (_CloudSpeed / 4) % 1);
+                float3 cloudBackColor = SAMPLE_TEXTURECUBE_BIAS(_CloudBackCubeMap, sampler_CloudBackCubeMap, cloudBackUVW, -1).rgb;
+                cloudBackColor *= _Cloudiness * _CloudOn;
                 // cloud blocking
-                float3 cloudBlocking = 1 - smoothstep(0.01, .1, cloudColor);
+                float3 cloudBlocking = 1 - smoothstep(0.01, .1, cloudColor + cloudBackColor);
 
                 // stars
                 float3 starUVW = GetStarUVW(viewDir, _StarLatitude, _Time.y * _StarSpeed % 1);
@@ -215,6 +224,7 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 sunColor *= 1 - moonMask;
                 float solarEclipse01 = smoothstep(1 - _SunRadius * _SunRadius, 1.0, sunMoonDot);
                 skyColor *= lerp(1, 0.3, solarEclipse01);
+                skyColor *= lerp(1, 0.7, _Cloudiness * _CloudOn);
                 sunColor *= (1 - moonMask) * lerp(1, 4, solarEclipse01);
                 sunColor *= _SunIntensity;
 
@@ -226,8 +236,10 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 sunColor = sunColor * cloudBlocking;
                 moonColor = moonColor * cloudBlocking;
                 starColor = starColor * cloudBlocking;
+                cloudColor *= (1 - starStrength) / 2;
+                cloudBackColor *= (1 - starStrength) / 2;
 
-                float3 col = skyColor + sunColor + cloudColor + starColor + moonColor;
+                float3 col = skyColor + sunColor + cloudBackColor + cloudColor + starColor + moonColor;
                 
                 return float4(col, 1);
             }

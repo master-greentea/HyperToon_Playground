@@ -13,6 +13,8 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _CLOUDBACKON_ON
+  - _CLOUDON_ON
   - _MOONON_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,8 +26,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CloudBackCubeMap:
+        m_Texture: {fileID: 8900000, guid: a50e307f0f596bd448c671b8393672cd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CloudCubeMap:
         m_Texture: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CloudySunMask:
+        m_Texture: {fileID: 2800000, guid: 25d145c0f0480f44fa5fcfde9f924210, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MoonCubeMap:
@@ -50,19 +60,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CloudBackOn: 0
+    - _CloudBackSpeed: 0.0002
     - _CloudOn: 1
     - _CloudOpacity: 1
     - _CloudSpeed: 0.001
+    - _Cloudiness: 1
     - _MoonDarkside: 0.01
     - _MoonEdgeStrength: 0.05
     - _MoonExposure: 0
     - _MoonOn: 1
     - _MoonRadius: 0.05
-    - _StarExposure: 3
+    - _StarExposure: 8
     - _StarLatitude: -30
-    - _StarPower: 2.02
+    - _StarPower: 2
     - _StarSpeed: 0.001
     - _SunIntensity: 3
-    - _SunRadius: 0.185
+    - _SunRadius: 0.164
     m_Colors: []
   m_BuildTextureStacks: []

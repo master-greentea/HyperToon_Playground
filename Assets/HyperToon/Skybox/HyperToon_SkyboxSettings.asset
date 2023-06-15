@@ -102,7 +102,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  sunRadius: 0.185
+  sunRadius: 0.164
   sunIntensity: 3
   moonTurnOn: 1
   moonRadius: 0.05
@@ -113,8 +113,10 @@ MonoBehaviour:
   cloudTurnOn: 1
   cloudCubeMap: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
   cloudSpeed: 0.001
+  cloudBackCubeMap: {fileID: 8900000, guid: a50e307f0f596bd448c671b8393672cd, type: 3}
+  cloudiness: 1
   starCubeMap: {fileID: 8900000, guid: abeadad4277001f40a1faad1fe1da581, type: 3}
   starSpeed: 0.001
-  starExposure: 3
-  starPower: 2.02
+  starExposure: 8
+  starPower: 2
   starLatitude: -30

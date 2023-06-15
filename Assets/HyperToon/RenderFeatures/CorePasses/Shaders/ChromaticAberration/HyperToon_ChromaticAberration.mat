@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HyperToon_ChromaticAbberation
+  m_Name: HyperToon_ChromaticAberration
   m_Shader: {fileID: -6465566751694194690, guid: 15d555c30c90f1b49b07ef15caba1494,
     type: 3}
   m_Parent: {fileID: 0}
@@ -58,13 +58,13 @@ Material:
     - _Brightness: 3
     - _DotDensity: 40
     - _DotRotation: 15
-    - _EdgeSize: 5
-    - _EdgeSoftness: 3.36
-    - _Intensity: 0.00367
+    - _EdgeSize: 0.91
+    - _EdgeSoftness: 7
+    - _Intensity: 0.00309
     - _QueueControl: 0
     - _QueueOffset: 0
     - _UseHalftone: 1
     m_Colors:
-    - _ColorB: {r: 1, g: 0, b: 0.43551683, a: 0}
-    - _ColorR: {r: 0, g: 0.7883401, b: 1, a: 0}
+    - _ColorB: {r: 0, g: 0.7733917, b: 1, a: 0}
+    - _ColorR: {r: 1, g: 0.23168185, b: 0, a: 0}
   m_BuildTextureStacks: []
