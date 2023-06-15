@@ -23,8 +23,8 @@ MonoBehaviour:
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 22741
-    ctime2: 47251
+    ctime1: 29684
+    ctime2: 42598
     ctime3: 65535
     ctime4: 0
     ctime5: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_ColorSpace: -1
+    m_ColorSpace: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   horizonZenithGradient:
@@ -54,9 +54,9 @@ MonoBehaviour:
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 20840
-    ctime2: 31784
-    ctime3: 38141
-    ctime4: 41615
+    ctime2: 36237
+    ctime3: 41441
+    ctime4: 43947
     ctime5: 65535
     ctime6: 0
     ctime7: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_ColorSpace: -1
+    m_ColorSpace: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
   sunHaloGradient:
@@ -79,16 +79,16 @@ MonoBehaviour:
     key2: {r: 0.99215686, g: 0.7921569, b: 0.07450981, a: 0}
     key3: {r: 0.25882354, g: 0.5176471, b: 0.35686275, a: 0}
     key4: {r: 0.39607844, g: 0.6666667, b: 0.61960787, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0.39607844, g: 0.6666667, b: 0.61960787, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 11403
-    ctime2: 33161
-    ctime3: 41222
+    ctime1: 25636
+    ctime2: 38165
+    ctime3: 42791
     ctime4: 65535
-    ctime5: 0
-    ctime6: 0
+    ctime5: 65535
+    ctime6: 65535
     ctime7: 0
     atime0: 0
     atime1: 65535
@@ -99,11 +99,44 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_ColorSpace: -1
+    m_ColorSpace: 0
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  sunRadius: 0.164
+  cloudColorGradient:
+    serializedVersion: 2
+    key0: {r: 0.14117648, g: 0.14901961, b: 0.18039216, a: 1}
+    key1: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
+    key2: {r: 0.9254902, g: 0.64705884, b: 0.27450982, a: 0}
+    key3: {r: 0.93333334, g: 0.16470589, b: 0.25882354, a: 0}
+    key4: {r: 0.9607843, g: 0.8509804, b: 0.32156864, a: 0}
+    key5: {r: 1, g: 1, b: 1, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 24094
+    ctime2: 27563
+    ctime3: 33924
+    ctime4: 40478
+    ctime5: 43188
+    ctime6: 65535
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
+  sunRadius: 0.12
   sunIntensity: 3
+  synthSun: 1
+  synthSunBottom: 0.6
+  synthSunLines: 22
   moonTurnOn: 1
   moonRadius: 0.05
   moonEdgeStrength: 0.05
@@ -112,11 +145,11 @@ MonoBehaviour:
   moonTexture: {fileID: 8900000, guid: a685fca233f0b4c4b839b6b7d62500ff, type: 3}
   cloudTurnOn: 1
   cloudCubeMap: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
-  cloudSpeed: 0.001
+  cloudSpeed: 0.0029
   cloudBackCubeMap: {fileID: 8900000, guid: a50e307f0f596bd448c671b8393672cd, type: 3}
-  cloudiness: 1
+  cloudiness: 0.89
   starCubeMap: {fileID: 8900000, guid: abeadad4277001f40a1faad1fe1da581, type: 3}
-  starSpeed: 0.001
-  starExposure: 8
-  starPower: 2
+  starSpeed: 0.0002
+  starExposure: 4
+  starPower: 2.67
   starLatitude: -30

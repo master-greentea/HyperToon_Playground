@@ -8,26 +8,33 @@ namespace HyperToon
     {
         private const int Resolution = 128;
 
-        [Header("Gradient")] [SerializeField] private Gradient nightDayGradient;
+        [Header("Gradient")]
+        [SerializeField] private Gradient nightDayGradient;
         [SerializeField] private Gradient horizonZenithGradient;
         [SerializeField] private Gradient sunHaloGradient;
+        [SerializeField] private Gradient cloudColorGradient;
 
-        [Header("Sun")] [Range(0f, 1f)] [SerializeField]
-        private float sunRadius = .05f;
-
+        [Header("Sun")]
+        [Range(0f, 1f)] [SerializeField] private float sunRadius = .05f;
         [Range(1f, 3f)] [SerializeField] private float sunIntensity = 1;
-        [Header("Moon")] [SerializeField] private bool moonTurnOn = true;
+        [SerializeField] private bool synthSun = false;
+        [Range(0f, 1f)] [SerializeField] private float synthSunBottom = .6f;
+        [SerializeField] private float synthSunLines = 48;
+        [Header("Moon")]
+        [SerializeField] private bool moonTurnOn = true;
         [Range(0f, 1f)] [SerializeField] private float moonRadius = .05f;
         [Range(0.01f, 1f)] [SerializeField] private float moonEdgeStrength = .05f;
         [Range(-16, 0)] [SerializeField] private float moonExposure = 0;
         [Range(0, 1)] [SerializeField] private float moonDarkside = .01f;
         [SerializeField] private Cubemap moonTexture;
-        [Header("Clouds")] [SerializeField] private bool cloudTurnOn = true;
+        [Header("Clouds")]
+        [SerializeField] private bool cloudTurnOn = true;
         [SerializeField] private Cubemap cloudCubeMap;
         [Range(0f, .1f)] [SerializeField] private float cloudSpeed = .001f;
         [SerializeField] private Cubemap cloudBackCubeMap;
         [Range(0f, 1f)] [SerializeField] public float cloudiness = 0f;
-        [Header("Stars")] [SerializeField] private Cubemap starCubeMap;
+        [Header("Stars")]
+        [SerializeField] private Cubemap starCubeMap;
         [Range(0f, .1f)] [SerializeField] private float starSpeed = .001f;
         [Range(-16, 16)] [SerializeField] private int starExposure = 3;
         [Range(1f, 5f)] [SerializeField] private float starPower = 2;
@@ -48,6 +55,9 @@ namespace HyperToon
         {
             RenderSettings.skybox.SetFloat("_SunRadius", sunRadius);
             RenderSettings.skybox.SetFloat("_SunIntensity", sunIntensity);
+            RenderSettings.skybox.SetFloat("_SynthSun", synthSun ? 1 : 0);
+            RenderSettings.skybox.SetFloat("_SynthSunBottom", synthSunBottom);
+            RenderSettings.skybox.SetFloat("_SynthSunLines", synthSunLines);
             RenderSettings.skybox.SetFloat("_MoonOn", moonTurnOn ? 1 : 0);
             RenderSettings.skybox.SetFloat("_MoonRadius", moonRadius);
             RenderSettings.skybox.SetFloat("_MoonEdgeStrength", moonEdgeStrength);
@@ -158,6 +168,23 @@ namespace HyperToon
             defaultSunHaloColors[3].time = .629f;
             defaultSunHaloColors[4].time = 1f;
             sunHaloGradient.SetKeys(defaultSunHaloColors, defaulAlphas);
+            
+            GradientColorKey[] defaultCloudColors = new GradientColorKey[7];
+            defaultCloudColors[0].color = GetColorFromHex("24262E");
+            defaultCloudColors[1].color = GetColorFromHex("2B2B2B");
+            defaultCloudColors[2].color = GetColorFromHex("ECA546");
+            defaultCloudColors[3].color = GetColorFromHex("EE2A42");
+            defaultCloudColors[4].color = GetColorFromHex("F5D952");
+            defaultCloudColors[5].color = GetColorFromHex("FFFFFF");
+            defaultCloudColors[6].color = GetColorFromHex("FFFFFF");
+            defaultCloudColors[0].time = 0f;
+            defaultCloudColors[1].time = .338f;
+            defaultCloudColors[2].time = .397f;
+            defaultCloudColors[3].time = .471f;
+            defaultCloudColors[4].time = .574f;
+            defaultCloudColors[5].time = .659f;
+            defaultCloudColors[6].time = 1f;
+            cloudColorGradient.SetKeys(defaultCloudColors, defaulAlphas);
 
             UpdateGradients();
         }
@@ -171,6 +198,7 @@ namespace HyperToon
             SaveGradient(nightDayGradient, "NightDayGradient");
             SaveGradient(horizonZenithGradient, "HorizonZenithGradient");
             SaveGradient(sunHaloGradient, "SunHaloGradient");
+            SaveGradient(cloudColorGradient, "CloudColorGradient");
         }
     }
 }

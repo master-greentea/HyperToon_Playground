@@ -24,10 +24,10 @@ namespace HyperToon
         private ViewSpaceNormalsTexturePass viewSpaceNormalsTexturePass;
         private ScreenSpaceOutlinePass screenSpaceOutlinePass;
 
-        [Header("Lightweight Blit Passes")]
+        [Header("Lightweight Blit Passes Stack")]
         // Lightweight Blit Passes
         [SerializeField]
-        private BlitPassSettings[] blitPassSettingsArray = new [] {new BlitPassSettings()};
+        private BlitPassSettings[] blitPassSettingsStack = new [] {new BlitPassSettings()};
         private BlitPass[] blitPasses;
         
         // Complete render feature
@@ -47,10 +47,10 @@ namespace HyperToon
             screenSpaceOutlinePass = new ScreenSpaceOutlinePass(outlinePassSettings.OutlinesRenderPassEvent, outlinesMaterial);
             
             // blit passes
-            blitPasses = new BlitPass[blitPassSettingsArray.Length];
-            for (int i = 0; i < blitPassSettingsArray.Length; i++)
+            blitPasses = new BlitPass[blitPassSettingsStack.Length];
+            for (int i = 0; i < blitPassSettingsStack.Length; i++)
             {
-                blitPasses[i] = new BlitPass(blitPassSettingsArray[i], name);
+                blitPasses[i] = new BlitPass(blitPassSettingsStack[i], name);
             }
         }
 

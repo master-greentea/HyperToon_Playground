@@ -8,6 +8,9 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
         // Sun
         _SunRadius ("Sun radius", Range(0, 1)) = 0.05
         _SunIntensity ("Sun intensity", Range(1, 3)) = 1
+        [MaterialToggle] _SynthSun ("Synth sun", Float) = 0
+        _SynthSunLines ("Synth sun lines", Range(0, 1)) = 0.5
+        _SynthSunBottom ("Synth sun bottom", Range(0, 1)) = 0.5
         // Moon
         [NoScaleOffset] _MoonCubeMap ("Moon cube map", Cube) = "black" {}
         [MaterialToggle] _MoonOn("Moon On", Float) = 1
@@ -16,6 +19,7 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
         _MoonExposure ("Moon exposure", Range(-16, 0)) = 0
         _MoonDarkside ("Moon darkside", Range(0, 1)) = 0.5
         // Day
+        [NoScaleOffset] _CloudGrad ("Cloud color gradient", 2D) = "white" {}
         [NoScaleOffset] _CloudCubeMap ("Cloud cube map", Cube) = "black" {}
         [MaterialToggle] _CloudOn("Cloud On", Float) = 1
         _CloudSpeed ("Cloud speed", Float) = 0.001
@@ -43,16 +47,15 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
 
             TEXTURE2D(_SunZenithGrad);
             SAMPLER(sampler_SunZenithGrad);
-            
             TEXTURE2D(_ViewZenithGrad);
             SAMPLER(sampler_ViewZenithGrad);
-            
             TEXTURE2D(_SunViewGrad);
             SAMPLER(sampler_SunViewGrad);
+            TEXTURE2D(_CloudGrad);
+            SAMPLER(sampler_CloudGrad);
 
             TEXTURECUBE(_MoonCubeMap);
             SAMPLER(sampler_MoonCubeMap);
-
             TEXTURECUBE(_StarCubeMap);
             SAMPLER(sampler_StarCubeMap);
             TEXTURECUBE(_CloudCubeMap);
@@ -63,12 +66,14 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
             struct Attributes
             {
                 float4 posOS    : POSITION;
+                float2 uv       : TEXCOORD1;
             };
 
             struct Varyings
             {
                 float4 posCS        : SV_POSITION;
                 float3 viewDirWS    : TEXCOORD0;
+                float2 uv           : TEXCOORD1;
             };
 
             Varyings Vertex(Attributes v)
@@ -79,30 +84,28 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
     
                 o.posCS = vertexInput.positionCS;
                 o.viewDirWS = vertexInput.positionWS;
+                o.uv = v.uv;
 
                 return o;
             }
 
             float3 _SunDir;
             float _SunIntensity;
+            float _SunRadius;
+            float _SynthSun, _SynthSunLines, _SynthSunBottom;
             
             float3 _MoonDir;
             float _MoonOn;
-            
-            float _SunRadius;
             float _MoonRadius;
             float _MoonEdgeStrength;
             float _MoonExposure;
             float _MoonDarkside;
             float4x4 _MoonSpaceMatrix;
 
-            float _StarExposure;
-            float _StarPower;
+            float _StarExposure, _StarPower;
             float _StarLatitude, _StarSpeed;
 
-            float _CloudSpeed;
-            float _CloudOn;
-            float _Cloudiness;
+            float _CloudSpeed, _CloudOn, _Cloudiness;
 
             float GetSunMask(float sunViewDot, float sunRadius)
             {
@@ -189,6 +192,13 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 
                 // The sun
                 float sunMask = GetSunMask(sunViewDot, _SunRadius);
+                float bottom = step(1 + lerp(-.3, .3, _SynthSunBottom) - sunZenithDot, 1 - v.uv.g) * smoothstep(.7, .75, 1 - sunZenithDot);
+                float smoothBottom = smoothstep(1 - sunZenithDot, 2 - sunZenithDot, 1 - v.uv.g);
+                float lines = lerp(_SynthSunLines, _SynthSunLines * 5, smoothBottom);
+                sunMask = _SynthSun < 1 ? sunMask : 
+                    saturate(
+                    step(.5, tan(v.uv.g * lines + 1))
+                    ) * bottom * sunMask + (1 - bottom) * sunMask;
                 float3 sunColor = _MainLightColor.rgb * sunMask;
 
                 // The moon
@@ -205,13 +215,12 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 // clouds
                 float3 cloudUVW = GetStarUVW(viewDir, 90, _Time.y * _CloudSpeed % 1);
                 float3 cloudColor = SAMPLE_TEXTURECUBE_BIAS(_CloudCubeMap, sampler_CloudCubeMap, cloudUVW, -1).rgb;
-                cloudColor *= _CloudOn * lerp(1, 2, _Cloudiness);
+                cloudColor *= _CloudOn;
                 // clouds back
                 float3 cloudBackUVW = GetStarUVW(viewDir, 90, _Time.y * (_CloudSpeed / 4) % 1);
                 float3 cloudBackColor = SAMPLE_TEXTURECUBE_BIAS(_CloudBackCubeMap, sampler_CloudBackCubeMap, cloudBackUVW, -1).rgb;
                 cloudBackColor *= _Cloudiness * _CloudOn;
-                // cloud blocking
-                float3 cloudBlocking = 1 - smoothstep(0.01, .1, cloudColor + cloudBackColor);
+                skyColor *= lerp(1, 0.7, _Cloudiness * _CloudOn); // darken color for when cloudy
 
                 // stars
                 float3 starUVW = GetStarUVW(viewDir, _StarLatitude, _Time.y * _StarSpeed % 1);
@@ -223,9 +232,8 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 // Solar eclipse
                 sunColor *= 1 - moonMask;
                 float solarEclipse01 = smoothstep(1 - _SunRadius * _SunRadius, 1.0, sunMoonDot);
-                skyColor *= lerp(1, 0.3, solarEclipse01);
-                skyColor *= lerp(1, 0.7, _Cloudiness * _CloudOn);
-                sunColor *= (1 - moonMask) * lerp(1, 4, solarEclipse01);
+                skyColor *= lerp(1, 0.3, solarEclipse01); // darken color for when eclipsed
+                sunColor *= (1 - moonMask) * lerp(1, 4, solarEclipse01); // increase sun brightness for when eclipsed
                 sunColor *= _SunIntensity;
 
                 // Lunar eclipse
@@ -233,13 +241,23 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 float lunarEclipse01 = smoothstep(1 - _SunRadius * _SunRadius * 0.05, 1.0, -sunMoonDot);
                 moonColor *= lerp(lunarEclipseMask, float3(0.4, 0.05, 0), lunarEclipse01);
 
+                // clouds block sun, moon, stars
+                // cloud blocking
+                float3 cloudBlocking = 1 - smoothstep(0.01, .1, cloudColor + cloudBackColor);
                 sunColor = sunColor * cloudBlocking;
                 moonColor = moonColor * cloudBlocking;
                 starColor = starColor * cloudBlocking;
-                cloudColor *= (1 - starStrength) / 2;
-                cloudBackColor *= (1 - starStrength) / 2;
+                // darken clouds for night
+                float3 cloudRawColor = SAMPLE_TEXTURE2D(_CloudGrad, sampler_CloudGrad, float2(sunZenithDot1, 0.5)).rgb;
+                float3 cloudColoring = (1 - starStrength) * cloudRawColor;
+                cloudColor *= cloudColoring;
+                cloudBackColor *= cloudColoring;
+                cloudBackColor *= pow(saturate(sunViewDot), 6) + cloudBackColor;
+                
 
                 float3 col = skyColor + sunColor + cloudBackColor + cloudColor + starColor + moonColor;
+
+                // col = smoothstep(.7, .8, 1 - sunZenithDot);
                 
                 return float4(col, 1);
             }
