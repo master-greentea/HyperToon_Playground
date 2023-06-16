@@ -55,16 +55,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brightness: 3
+    - _Brightness: 24
     - _DotDensity: 40
     - _DotRotation: 15
-    - _EdgeSize: 0.91
-    - _EdgeSoftness: 7
-    - _Intensity: 0.00309
+    - _EdgeSize: 0.89
+    - _EdgeSoftness: 3.46
+    - _Intensity: 0.00151
     - _QueueControl: 0
     - _QueueOffset: 0
     - _UseHalftone: 1
     m_Colors:
-    - _ColorB: {r: 0, g: 0.7733917, b: 1, a: 0}
-    - _ColorR: {r: 1, g: 0.23168185, b: 0, a: 0}
+    - _ColorB: {r: 0.12549019, g: 1, b: 0.51232225, a: 0}
+    - _ColorR: {r: 1, g: 0.23750061, b: 0, a: 0}
   m_BuildTextureStacks: []

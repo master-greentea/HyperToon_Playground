@@ -69,21 +69,21 @@ Material:
     - _CloudBackSpeed: 0.0002
     - _CloudOn: 1
     - _CloudOpacity: 1
-    - _CloudSpeed: 0.0029
-    - _Cloudiness: 0.89
+    - _CloudSpeed: 0.0018
+    - _Cloudiness: 0.766
     - _MoonDarkside: 0.01
     - _MoonEdgeStrength: 0.05
     - _MoonExposure: 0
     - _MoonOn: 1
-    - _MoonRadius: 0.05
+    - _MoonRadius: 0.121
     - _StarExposure: 4
-    - _StarLatitude: -30
-    - _StarPower: 2.67
-    - _StarSpeed: 0.0002
+    - _StarLatitude: -28
+    - _StarPower: 2.6
+    - _StarSpeed: 0.0039
     - _SunIntensity: 3
-    - _SunRadius: 0.12
+    - _SunRadius: 0.098
     - _SynthSun: 1
     - _SynthSunBottom: 0.6
-    - _SynthSunLines: 22
+    - _SynthSunLines: 64
     m_Colors: []
   m_BuildTextureStacks: []

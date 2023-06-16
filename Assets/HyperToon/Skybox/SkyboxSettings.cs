@@ -150,9 +150,9 @@ namespace HyperToon
             horizonZenithColors[5].color = GetColorFromHex("A7C7EA");
             horizonZenithColors[0].time = 0f;
             horizonZenithColors[1].time = .318f;
-            horizonZenithColors[2].time = .485f;
-            horizonZenithColors[3].time = .582f;
-            horizonZenithColors[4].time = .635f;
+            horizonZenithColors[2].time = .515f;
+            horizonZenithColors[3].time = .622f;
+            horizonZenithColors[4].time = .675f;
             horizonZenithColors[5].time = 1f;
             horizonZenithGradient.SetKeys(horizonZenithColors, defaulAlphas);
 
@@ -164,15 +164,15 @@ namespace HyperToon
             defaultSunHaloColors[4].color = GetColorFromHex("65AA9E");
             defaultSunHaloColors[0].time = 0f;
             defaultSunHaloColors[1].time = .174f;
-            defaultSunHaloColors[2].time = .506f;
-            defaultSunHaloColors[3].time = .629f;
+            defaultSunHaloColors[2].time = .526f;
+            defaultSunHaloColors[3].time = .659f;
             defaultSunHaloColors[4].time = 1f;
             sunHaloGradient.SetKeys(defaultSunHaloColors, defaulAlphas);
             
             GradientColorKey[] defaultCloudColors = new GradientColorKey[7];
             defaultCloudColors[0].color = GetColorFromHex("24262E");
             defaultCloudColors[1].color = GetColorFromHex("2B2B2B");
-            defaultCloudColors[2].color = GetColorFromHex("ECA546");
+            defaultCloudColors[2].color = GetColorFromHex("896364");
             defaultCloudColors[3].color = GetColorFromHex("EE2A42");
             defaultCloudColors[4].color = GetColorFromHex("F5D952");
             defaultCloudColors[5].color = GetColorFromHex("FFFFFF");
@@ -180,9 +180,9 @@ namespace HyperToon
             defaultCloudColors[0].time = 0f;
             defaultCloudColors[1].time = .338f;
             defaultCloudColors[2].time = .397f;
-            defaultCloudColors[3].time = .471f;
-            defaultCloudColors[4].time = .574f;
-            defaultCloudColors[5].time = .659f;
+            defaultCloudColors[3].time = .531f;
+            defaultCloudColors[4].time = .614f;
+            defaultCloudColors[5].time = .709f;
             defaultCloudColors[6].time = 1f;
             cloudColorGradient.SetKeys(defaultCloudColors, defaulAlphas);
 

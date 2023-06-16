@@ -186,9 +186,8 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 float3 viewZenithColor = SAMPLE_TEXTURE2D(_ViewZenithGrad, sampler_ViewZenithGrad, float2(sunZenithDot1, 0.5)).rgb;
                 float vzMask = pow(saturate(1.0 - viewZenithDot), 4);
                 float3 sunViewColor = SAMPLE_TEXTURE2D(_SunViewGrad, sampler_SunViewGrad, float2(sunZenithDot1, 0.5)).rgb;
-                float svMask = pow(saturate(sunViewDot), 4);
-
-                float3 skyColor = sunZenithColor + vzMask * viewZenithColor + svMask * sunViewColor;
+                float svMask = pow(saturate(sunViewDot), 6);
+                
                 
                 // The sun
                 float sunMask = GetSunMask(sunViewDot, _SunRadius);
@@ -220,7 +219,12 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 float3 cloudBackUVW = GetStarUVW(viewDir, 90, _Time.y * (_CloudSpeed / 4) % 1);
                 float3 cloudBackColor = SAMPLE_TEXTURECUBE_BIAS(_CloudBackCubeMap, sampler_CloudBackCubeMap, cloudBackUVW, -1).rgb;
                 cloudBackColor *= _Cloudiness * _CloudOn;
-                skyColor *= lerp(1, 0.7, _Cloudiness * _CloudOn); // darken color for when cloudy
+
+                // cloud blocking
+                float3 cloudBlocking = 1 - smoothstep(0.01, .1, cloudColor + cloudBackColor);
+                // calculate sky color (with cloud)
+                float3 skyColor = sunZenithColor + vzMask * viewZenithColor + svMask * cloudBlocking * sunViewColor;
+                skyColor *= lerp(1, 0.8, _Cloudiness * _CloudOn); // darken color for when cloudy
 
                 // stars
                 float3 starUVW = GetStarUVW(viewDir, _StarLatitude, _Time.y * _StarSpeed % 1);
@@ -242,8 +246,6 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 moonColor *= lerp(lunarEclipseMask, float3(0.4, 0.05, 0), lunarEclipse01);
 
                 // clouds block sun, moon, stars
-                // cloud blocking
-                float3 cloudBlocking = 1 - smoothstep(0.01, .1, cloudColor + cloudBackColor);
                 sunColor = sunColor * cloudBlocking;
                 moonColor = moonColor * cloudBlocking;
                 starColor = starColor * cloudBlocking;
@@ -252,7 +254,8 @@ Shader "HyperToon/Skybox/HyperToon_Skybox"
                 float3 cloudColoring = (1 - starStrength) * cloudRawColor;
                 cloudColor *= cloudColoring;
                 cloudBackColor *= cloudColoring;
-                cloudBackColor *= pow(saturate(sunViewDot), 6) + cloudBackColor;
+                float3 frontCloudBlocking = 1 - smoothstep(0.01, .1, cloudColor);
+                cloudBackColor *= pow(saturate(sunViewDot), 24) * frontCloudBlocking + cloudBackColor;
                 
 
                 float3 col = skyColor + sunColor + cloudBackColor + cloudColor + starColor + moonColor;
