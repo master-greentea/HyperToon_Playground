@@ -70,7 +70,7 @@ Material:
     - _CloudOn: 1
     - _CloudOpacity: 1
     - _CloudSpeed: 0.0018
-    - _Cloudiness: 0.766
+    - _Cloudiness: 0
     - _MoonDarkside: 0.01
     - _MoonEdgeStrength: 0.05
     - _MoonExposure: 0
@@ -81,9 +81,9 @@ Material:
     - _StarPower: 2.6
     - _StarSpeed: 0.0039
     - _SunIntensity: 3
-    - _SunRadius: 0.098
+    - _SunRadius: 0.054
     - _SynthSun: 1
-    - _SynthSunBottom: 0.6
+    - _SynthSunBottom: 0.649
     - _SynthSunLines: 64
     m_Colors: []
   m_BuildTextureStacks: []

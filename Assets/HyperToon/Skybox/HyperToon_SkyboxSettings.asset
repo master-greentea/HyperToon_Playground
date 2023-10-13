@@ -132,10 +132,10 @@ MonoBehaviour:
     m_ColorSpace: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  sunRadius: 0.098
+  sunRadius: 0.054
   sunIntensity: 3
   synthSun: 1
-  synthSunBottom: 0.6
+  synthSunBottom: 0.649
   synthSunLines: 64
   moonTurnOn: 1
   moonRadius: 0.121
@@ -147,7 +147,7 @@ MonoBehaviour:
   cloudCubeMap: {fileID: 8900000, guid: 8c1dd5fe02c248940ad7c289fc9200dc, type: 3}
   cloudSpeed: 0.0018
   cloudBackCubeMap: {fileID: 8900000, guid: a50e307f0f596bd448c671b8393672cd, type: 3}
-  cloudiness: 0.766
+  cloudiness: 0
   starCubeMap: {fileID: 8900000, guid: abeadad4277001f40a1faad1fe1da581, type: 3}
   starSpeed: 0.0039
   starExposure: 4
