@@ -18,13 +18,16 @@ Material:
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS_CASCADE
   - _SHADOWS_SOFT
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -65,31 +68,33 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _Diffuse: 0.078
-    - _DistanceAtten: 0.252
+    - _Diffuse: 0.023
+    - _DistanceAtten: 0.609
     - _DotDensity: 40
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _HalftoneHighlight: 1
     - _HalftoneShadow: 1
     - _IORMedium: 0
     - _IORSource: 0
     - _IsTransparent: 0
     - _NormalStrength: 0.5
-    - _QueueControl: -1
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveReflection: 0
     - _ReflectionRimThreshold: 1
     - _RefractionThickness: 0
-    - _Rim: 0.35
-    - _RimSoftness: 0.05
+    - _Rim: 0.459
+    - _RimSoftness: 0.18
     - _RimThreshold: 1
     - _Rotation: 45
-    - _ShadowAtten: 3.04
-    - _Smoothness: 0.5
-    - _Specular: 0.02
-    - _SpecularBoost: 0.325
-    - _SpecularOffset: 0.0054
-    - _SrcBlend: 1
+    - _ShadowAtten: 3.59
+    - _ShadowStrength: 0
+    - _ShadowValue: 0.0316
+    - _Smoothness: 0
+    - _Specular: 0.062
+    - _SpecularBoost: 0.429
+    - _SpecularOffset: 0.0097
+    - _SrcBlend: 5
     - _Surface: 1
     - _UseCustomNormals: 0
     - _UseScreenSpace: 1
@@ -97,7 +102,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 0.28301874, g: 0.28301874, b: 0.28301874, a: 1}
+    - _Color: {r: 0.36862743, g: 0.6819816, b: 0.9137255, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8898033163929172422

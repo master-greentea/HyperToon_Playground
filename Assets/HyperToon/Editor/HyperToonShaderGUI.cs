@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -90,9 +91,22 @@ namespace HyperToon
                 }
             }
         }
+
+        public void DrawCastShadows(MaterialProperty castShadowProperty)
+        {
+            // Cast Shadows
+            EditorGUI.BeginChangeCheck();
+            MaterialEditor.BeginProperty(castShadowProperty);
+            bool newValue = EditorGUILayout.Toggle("Cast Shadows", castShadowProperty.floatValue == 1);
+            if (EditorGUI.EndChangeCheck())
+                castShadowProperty.floatValue = newValue ? 1.0f : 0.0f;
+            MaterialEditor.EndProperty();
+            Material mat = materialEditor.target as Material;
+            mat.SetShaderPassEnabled("ShadowCaster", newValue);
+        }
     }
     
-    public class MainShaderGUI : ShaderGUI
+    public class MainShaderGUI : BaseShaderGUI
     {
         private HyperToonEditor e;
 
@@ -105,10 +119,15 @@ namespace HyperToon
         private bool reflectionFoldout;
         private readonly Vector2 reflectionScrollPos = new(22, 24);
         private readonly Vector2 transparentScrollPos = new(25, 29);
+        private bool shadowFoldout;
+        private readonly Vector2 shadowScrollPos = new(29, 30);
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
+            // base.OnGUI(materialEditor, properties);
             e = new HyperToonEditor(materialEditor, properties);
+            
+            
 
             // Base
             EditorGUILayout.LabelField("Base", EditorStyles.boldLabel);
@@ -151,8 +170,21 @@ namespace HyperToon
             halftoneFoldout = e.DrawRangeFoldout(halftoneFoldout, "Halftone", halftoneScrollPos);
             // Reflection
             reflectionFoldout = e.DrawRangeFoldout(reflectionFoldout, "Reflection", reflectionScrollPos);
+            // Shadows
+            shadowFoldout = e.DrawRangeFoldout(shadowFoldout, "Shadow", shadowScrollPos);
+            
+            // Cast Shadows (Surface Options)
+            GUILayout.Space(10);
+            EditorGUILayout.LabelField("Surface Options", EditorStyles.boldLabel);
+            e.DrawCastShadows(FindProperty("_CastShadows", properties, false));
 
+            // Advanced Options
             e.DrawAdvancedOptions();
+        }
+
+        public void ValidateMaterial(Material material)
+        {
+
         }
     }
 
