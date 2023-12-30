@@ -75,8 +75,8 @@ Material:
     - _NormalStrength: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveReflection: 0
-    - _ReflectionRimThreshold: 2
+    - _ReceiveReflection: 1
+    - _ReflectionRimThreshold: 2.9
     - _RefractionThickness: 0.27
     - _Rim: 0.35
     - _RimSoftness: 0.05
