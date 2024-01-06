@@ -18,7 +18,8 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: 1833486065962229458}
-  m_RendererFeatureMap: d29e4ededcd97119
+  - {fileID: 4830431768320072442}
+  m_RendererFeatureMap: d29e4ededcd97119fada7abe19240943
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -99,9 +100,37 @@ MonoBehaviour:
       stepAngleMultiplier: 20
       outlineColor: {r: 0, g: 0, b: 0, a: 1}
   blitPassSettingsStack:
-  - Activate: 0
-    BlitRenderPassEvent: 500
-    BlitMaterial: {fileID: 2100000, guid: 2e906eb0cecf2cc4f86e3dbfb5f4f574, type: 2}
   - Activate: 1
     BlitRenderPassEvent: 550
     BlitMaterial: {fileID: 2100000, guid: f59c1827e95f7e841bf5266b7cf85685, type: 2}
+--- !u!114 &4830431768320072442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52972966f81feb43b52481591ead784, type: 3}
+  m_Name: OilPaintingEffect
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    anisotropicKuwaharaFilterSettings:
+      filterKernelSectors: 8
+      filterKernelSmoothness: 0.22
+      filterRadius: 4.78
+      filterSharpness: 10.94
+      eccentricity: 2.23
+      iterations: 1
+    edgeFlowSettings:
+      noiseTexture: {fileID: 0}
+      streamLineLength: 10
+      streamKernelStrength: 0.5
+    compositorSettings:
+      edgeContribution: 1
+      flowContribution: 1
+      depthContribution: 1
+      bumpPower: 0.8
+      bumpIntensity: 0.4
