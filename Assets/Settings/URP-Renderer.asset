@@ -80,6 +80,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
   outlinePassSettings:
+    Activate: 0
     OutlinesRenderPassEvent: 450
     OutlinesLayerMask:
       serializedVersion: 2

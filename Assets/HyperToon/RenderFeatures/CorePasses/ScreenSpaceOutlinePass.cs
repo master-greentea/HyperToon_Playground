@@ -34,6 +34,7 @@ namespace HyperToon
     [Serializable]
     public class OutlinePassSettings
     {
+        [SerializeField] public bool Activate = false;
         [SerializeField] public RenderPassEvent OutlinesRenderPassEvent = RenderPassEvent.BeforeRenderingTransparents;
         [SerializeField] public LayerMask OutlinesLayerMask;
         [SerializeField] public ViewSpaceNormalsTextureSettings NormalsTextureSettings;

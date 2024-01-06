@@ -63,7 +63,7 @@ Material:
     - _Intensity: 0.00151
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _UseHalftone: 1
+    - _UseHalftone: 0
     m_Colors:
     - _ColorB: {r: 0.12549019, g: 1, b: 0.51232225, a: 0}
     - _ColorR: {r: 1, g: 0.23750061, b: 0, a: 0}

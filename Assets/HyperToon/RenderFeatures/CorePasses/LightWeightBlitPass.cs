@@ -25,6 +25,15 @@ namespace HyperToon
 		private readonly RTHandle destinationTexture;
 		private readonly string profilerTag;
 
+		public BlitPass(string tag)
+		{
+			renderPassEvent = RenderPassEvent.BeforeRendering;
+			blitMaterial = new Material(Shader.Find("HyperToon/RenderFeatures/HyperToon_DefaultBlit"));
+			profilerTag = tag;
+			temporaryColorTexture = RTHandles.Alloc("_TemporaryColorTexture", name: "_TemporaryColorTexture");
+			destinationTexture = RTHandles.Alloc("_DestinationTexture", name: "_DestinationTexture");
+		}
+
 		public BlitPass(BlitPassSettings settings, string tag)
 		{
 			this.settings = settings;

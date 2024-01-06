@@ -56,6 +56,10 @@ namespace HyperToon
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
+            // add default blit pass here or it doesn't display anything
+            BlitPass defaultBlitPass = new BlitPass("_DefaultBlitPass");
+            defaultBlitPass.Setup();
+            renderer.EnqueuePass(defaultBlitPass);
             // blit passes added
             foreach (var blitPass in blitPasses)
             {
@@ -67,6 +71,7 @@ namespace HyperToon
             renderer.EnqueuePass(grabPass);
             renderer.EnqueuePass(renderPass);
             // outlines passes added
+            if (!outlinePassSettings.Activate) return;
             screenSpaceOutlinePass.Setup(outlinePassSettings.OutlineMaterialSettings);
             renderer.EnqueuePass(viewSpaceNormalsTexturePass);
             renderer.EnqueuePass(screenSpaceOutlinePass);
