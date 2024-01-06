@@ -110,16 +110,16 @@ namespace HyperToon
     {
         private HyperToonEditor e;
 
-        private bool edgeConstantsFoldout;
+        private bool edgeConstantsFoldout = true;
         private readonly Vector2 edgeConstantsScrollPos = new(7, 13);
-        private bool rimFoldout;
+        private bool rimFoldout = true;
         private readonly Vector2 rimScrollPos = new(13, 17);
-        private bool halftoneFoldout;
+        private bool halftoneFoldout = true;
         private readonly Vector2 halftoneScrollPos = new(17, 22);
-        private bool reflectionFoldout;
+        private bool reflectionFoldout = true;
         private readonly Vector2 reflectionScrollPos = new(22, 24);
         private readonly Vector2 transparentScrollPos = new(25, 29);
-        private bool shadowFoldout;
+        private bool shadowFoldout = true;
         private readonly Vector2 shadowScrollPos = new(29, 30);
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
